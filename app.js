@@ -16,13 +16,11 @@ app.use(bodyParser.json());
 
 app.post("/", (req, res) => {
     let request = req.body;
-    console.log("Req", req.body);
     axios
     .post(`${ENDPOINT}?role=${request.role === "other" ? request["role-Comment"] : request.role}`, request)
     .then(async resp => {
         if(resp.status === 200){
             let data = resp.data;
-            console.log("Data", data);
             res.status(200).send("Data captured");
         }
     }).catch(e => {
@@ -31,4 +29,4 @@ app.post("/", (req, res) => {
 });
 
 
-app.listen(PORT, () => console.log(`Hello world app listening on port ${PORT}!`));
+app.listen(PORT, () => console.log(`Growfers survey app listening on port ${PORT}!`));
